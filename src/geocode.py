@@ -45,12 +45,12 @@ def Google_Api_request(direccion,radio):
 
 
 
-def cleaning_rest(direccion,radio):
+def cleaning_box(direccion,radio):
     """
     Esta función me transforma un json en df.
-    Args: ciudad (string)
+    Args: dirección/ciudad (string)
           radio(int)
-    Return: df con las características principales de los restaurantes.
+    Return: df con las características principales de los box de crossfit.
     """
     res=Google_Api_request(direccion,radio)
     dicc={"Name":[], "Rating":[],"Dirección":[],"Latitud":[], "Longitud":[]}
@@ -60,5 +60,5 @@ def cleaning_rest(direccion,radio):
         dicc['Dirección'].append(res['results'][i]['vicinity']) #dirección
         dicc['Latitud'].append(res['results'][i]['geometry']['location']['lat']) #lat
         dicc['Longitud'].append(res['results'][i]['geometry']['location']['lng']) #lng
-    restaurants=pd.DataFrame(dicc)
-    return restaurants
+    box_crossfit=pd.DataFrame(dicc)
+    return box_crossfit
