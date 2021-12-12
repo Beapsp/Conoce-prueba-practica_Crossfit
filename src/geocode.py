@@ -9,6 +9,9 @@ from dotenv import load_dotenv
 import sys
 sys.path.append('../')
 
+import folium
+from folium import Choropleth, Circle, Marker, Icon, Map
+from folium.plugins import HeatMap, MarkerCluster
 
 load_dotenv()
 
@@ -60,5 +63,36 @@ def cleaning_box(direccion,radio):
         dicc['Dirección'].append(res['results'][i]['vicinity']) #dirección
         dicc['Latitud'].append(res['results'][i]['geometry']['location']['lat']) #lat
         dicc['Longitud'].append(res['results'][i]['geometry']['location']['lng']) #lng
+        
     box_crossfit=pd.DataFrame(dicc)
     return box_crossfit
+
+
+def map(direccion,radio):
+    boxes=cleaning_box(direccion, radio)
+    coord=list(get_coordenadas(direccion))
+    map_rest = Map(location = coord, zoom_start = 15)
+    for i,row in boxes.iterrows():
+        dicc = {"location": [row["Latitud"], row["Longitud"]], "tooltip": row["Name"]}
+        
+        if row["Rating"] >=3.0 :
+            icono = Icon(color = "blue",
+                        prefix="fa",
+                        icon="thumbs-o-up",
+                        icon_color="black"
+            )
+        elif row["Rating"] < 3.0 and row["Rating"]>= 2.0 :
+            icono = Icon(color = "purple",
+                        prefix="fa",
+                        icon="hand-o-right",
+                        icon_color="black")
+            
+        elif row["Rating"] < 2.0 :
+            icono = Icon(color = "red",
+                        prefix="fa",
+                        icon="thumbs-o-down",
+                        icon_color="black")
+            
+        mark = Marker(**dicc, icon=icono)
+        mark.add_to(map_rest)
+    return map_rest
