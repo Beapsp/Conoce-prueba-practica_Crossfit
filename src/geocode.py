@@ -69,29 +69,35 @@ def cleaning_box(direccion,radio):
 
 
 def map(direccion,radio):
+    icon_url= 'https://img2.freepng.es/20180703/oyo/kisspng-crossfit-791-konse-endurance-business-crossfit-eixample-5b3b23f92b1fe9.1553062215306024891767.jpg'
+    icon_url2 ='https://e7.pngegg.com/pngimages/758/190/png-clipart-adobe-illustrator-sport-exercise-equipment-exercise-dumbbells-blue-fitness.png'
+    icon_url3 = 'https://thumbs.dreamstime.com/b/pesas-de-gimnasia-rojas-5073020.jpg'
     boxes=cleaning_box(direccion, radio)
     coord=list(get_coordenadas(direccion))
     map_rest = Map(location = coord, zoom_start = 15)
     for i,row in boxes.iterrows():
         dicc = {"location": [row["Latitud"], row["Longitud"]], "tooltip": row["Name"]}
         
-        if row["Rating"] >=3.0 :
-            icono = Icon(color = "blue",
-                        prefix="fa",
-                        icon="thumbs-o-up",
-                        icon_color="black"
-            )
-        elif row["Rating"] < 3.0 and row["Rating"]>= 2.0 :
-            icono = Icon(color = "purple",
-                        prefix="fa",
-                        icon="hand-o-right",
-                        icon_color="black")
+        if row["Rating"] >=3.8 :
+            icono = folium.features.CustomIcon(icon_url, icon_size=(30,30))
+            #icono = Icon(color = "blue",
+                        #prefix="fa",
+                        #icon=folium.features.CustomIcon(icon_url, icon_size=(15,15)), 
+                        #icon_color="black"
+            #)
+        elif row["Rating"] < 3.8 and row["Rating"]>= 2.0 :
+            icono = folium.features.CustomIcon(icon_url2, icon_size=(30,30))
+            #icono = Icon(color = "purple",
+                        #prefix="fa",
+                        #icon="hand-o-right",
+                        #icon_color="black")
             
         elif row["Rating"] < 2.0 :
-            icono = Icon(color = "red",
-                        prefix="fa",
-                        icon="thumbs-o-down",
-                        icon_color="black")
+            icono = folium.features.CustomIcon(icon_url3, icon_size=(30,30))
+            #icono = Icon(color = "red",
+                        #prefix="fa",
+                        #icon="thumbs-o-down",
+                        #icon_color="black")
             
         mark = Marker(**dicc, icon=icono)
         mark.add_to(map_rest)
