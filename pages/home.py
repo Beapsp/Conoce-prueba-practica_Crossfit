@@ -5,13 +5,13 @@ from PIL import Image
 
 
 def app():
-    portada = Image.open("imagenes/image1.jpg")
-    st.image(portada, use_column_width=True)
+
     st.write("""
     # Conoce, prueba, practica CROSSFIT
     
-    
     """)
+    portada = Image.open("imagenes/image1.jpg")
+    st.image(portada, use_column_width=True)
     #f=codecs.open("data/pedrito.html", 'r')
     #pedro = f.read()
 
