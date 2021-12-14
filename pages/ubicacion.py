@@ -87,16 +87,16 @@ def app():
     ### Busca tu Box
 
     """)
-    default_value_goes_here = "Calle Campomanes 10, Madrid"
+    default_value_goes_here = "Paseo de la Chopera 14, Madrid"
     user_input_dire = st.text_input("Introduce dirección", default_value_goes_here)
-    default_value_radio = 10000
+    default_value_radio = 5000
     user_input_radio = st.text_input("Introduce radio", default_value_radio)
 
     #data = requests.get(f"https://geocode.xyz/{user_input}?json=1").json()
     #latlon = [data["latt"],data["longt"]]
     
     
-    folium_static(map(user_input_dire, user_input_radio))
+    folium_static(map(user_input_dire,user_input_radio))
 
 
     st.write("""
