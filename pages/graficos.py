@@ -13,8 +13,13 @@ import plotly.express as px
 
 
 def app():
-    size2 = ["Elige","Games","Open"]
-    input_size = st.selectbox("¿Qué competición quieres analizar?", size2)
+    
+    st.write("""
+        ## ¿Quieres saber un poco más?
+        #""")
+    
+    size2 = ["Competición","Games","Open"]
+    input_size = st.selectbox("Elige", size2)
     grafico1 = pd.read_csv("data/redi_games.csv")
     grafico2 = pd.read_csv("data/clean_games.csv")
     grafico5 = pd.read_csv("data/top5_w_open.csv")
@@ -26,7 +31,7 @@ def app():
             #)
     
     
-    if input_size == "Elige":
+    if input_size == "Competición":
         st.image(
                 "https://monophy.com/media/3osBLvoR8tGE6OI5os/monophy.gif", 
                 width=700,
@@ -37,7 +42,7 @@ def app():
     elif input_size == "Games":
 
         st.write("""
-        # Participación en GAMES por países 
+        ## Participación en GAMES por países 
         #""")
 
         fig = go.Figure(go.Choropleth(
@@ -77,8 +82,9 @@ def app():
 
 
         st.write("""
-        # Media de edad de participantes 
-        #""")
+        ## Media de edad participantes 
+        ###### LA MEDIA DE EDAD GENERAL ES DE 33 AÑOS, MIENTRAS QUE LA MEDIANA ES DE 30 AÑOS""")
+       
         fig3 = px.histogram(grafico2, x="age")
         fig3.add_vline(grafico2.age.median(), line_width=3, line_dash="dash", line_color="purple")
         fig3.add_vline(grafico2.age.mean(), line_width=3, line_dash="dash", line_color="green")
@@ -86,16 +92,16 @@ def app():
         
         
         st.write("""
-        ## Comparativa general participación entre Mujeres y Hombres 
-        #""")
+        ## Participación general Mujeres y Hombres 
+        ###### LA DIFERENCIA DE PARTICIPACIÓN GENERAL ENTRE HOMBRES Y MUJERES ES MUY PEQUEÑA""")
         fig2 = px.histogram(grafico2, x="gender")
         fig2.update_layout(bargap=0.2)
         st.plotly_chart(fig2),
 
 
         st.write("""
-        ## Comparativa por rangos participación entre Mujeres y Hombres 
-        #""")
+        ## Participación por rangos de edad 
+        ###### PARTICIPACIÓN HOMBRES > MUJER **SOLO** EN RANGO DE EDAD GENERAL""")
         fig4 = px.histogram(grafico2, x="division") #color="gender", barmode="group"
         fig4.update_layout(bargap=0.2)
         st.plotly_chart(fig4),

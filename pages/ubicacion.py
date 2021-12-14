@@ -84,7 +84,7 @@ def app():
         return map_rest
 
     st.write("""
-    ### Busca tu Box
+    ## Busca tu Box
 
     """)
     default_value_goes_here = "Paseo de la Chopera 14, Madrid"
@@ -100,7 +100,7 @@ def app():
 
 
     st.write("""
-    ### Ya no tienes excusas
+    # YA NO TIENES EXCUSA
     """)
 
     #f=codecs.open("data/mapa.html", 'r')
