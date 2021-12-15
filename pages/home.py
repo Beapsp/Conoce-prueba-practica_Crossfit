@@ -11,7 +11,6 @@ def app():
     
     """)
     portada = Image.open("imagenes/image5.jpg")
-    #portada = Image.open(gif)
     st.image(portada, use_column_width=True)
     #f=codecs.open("data/pedrito.html", 'r')
     #pedro = f.read()

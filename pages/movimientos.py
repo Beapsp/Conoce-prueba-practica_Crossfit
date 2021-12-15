@@ -4,20 +4,23 @@ import sys
 import codecs
 import streamlit.components.v1 as components
 sys.path.append('../')
-
+from PIL import Image
 
     
 
 def app():
     data = pd.read_csv("data/movimientos_video.csv")
 
-    
-    #st.dataframe(data)
    
     st.write("""
-        ## ¿Qué movimiento quieres conocer? 
+        ## ¿Qué movimiento quieres conocer? &#128170;
         #""")
-        
+    
+    st.image(
+                "https://wodprep.com/wp-content/uploads/2019/09/Webp.net-gifmaker-2.gif", 
+                width=500,
+            ),
+
     size = list(data.name.unique())
     size.insert(0,"Elige")
     input_size = st.selectbox("Elige", size)

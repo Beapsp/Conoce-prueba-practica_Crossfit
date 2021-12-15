@@ -11,6 +11,7 @@ from folium.plugins import HeatMap, MarkerCluster
 import sys
 sys.path.append('../')
 import src.geocode as gc
+from PIL import Image
 
 def map(direccion,radio):
         icon_url= 'https://img2.freepng.es/20180703/oyo/kisspng-crossfit-791-konse-endurance-business-crossfit-eixample-5b3b23f92b1fe9.1553062215306024891767.jpg'
@@ -99,6 +100,9 @@ def app():
     
     
     folium_static(map(user_input_dire,user_input_radio))
+
+    portada = Image.open("imagenes/image6.jpg")
+    st.image(portada, use_column_width=False)
 
     df_box = gc.cleaning_box(user_input_dire,user_input_radio)
     df_box_dire = df_box.drop(["Latitud","Longitud"], axis=1)
