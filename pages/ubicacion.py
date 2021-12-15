@@ -50,8 +50,8 @@ def map(direccion,radio):
 def app():
     def map(direccion,radio):
         icon_url= 'https://img2.freepng.es/20180703/oyo/kisspng-crossfit-791-konse-endurance-business-crossfit-eixample-5b3b23f92b1fe9.1553062215306024891767.jpg'
-        icon_url2 ='https://img5.cliparto.com/pic/xl/206818/6956238-athletic-red-kettlebell.jpg'
-        icon_url3 = 'https://www.crushpixel.com/big-static19/preview4/kettlebell-icon-cartoon-style-3301725.jpg'
+        icon_url2 ='https://m.media-amazon.com/images/I/51uhVR7ifKL._AC_SL1000_.jpg'
+        icon_url3 = 'https://img5.cliparto.com/pic/xl/206818/6956238-athletic-red-kettlebell.jpg'
         boxes=gc.cleaning_box(direccion, radio)
         coord=list(gc.get_coordenadas(direccion))
         map_rest = folium.Map(location = coord, zoom_start = 15)
