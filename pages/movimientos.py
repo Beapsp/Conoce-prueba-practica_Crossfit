@@ -18,8 +18,11 @@ def app():
         ## ¿Qué movimiento quieres conocer? 
         #""")
         
-    size = data.name.unique()
+    size = list(data.name.unique())
+    size.insert(0,"Elige")
     input_size = st.selectbox("Elige", size)
+    if input_size == "Elige":
+        st.stop()
     df = data[data["name"]==input_size]
 
     movimiento = df["iframe"].values[0]

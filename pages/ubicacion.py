@@ -92,11 +92,17 @@ def app():
     default_value_radio = 5000
     user_input_radio = st.text_input("Introduce radio", default_value_radio)
 
+    #df_box = gc.cleaning_box(default_value_goes_here,default_value_radio)
+    #st.dataframe(df_box)
     #data = requests.get(f"https://geocode.xyz/{user_input}?json=1").json()
     #latlon = [data["latt"],data["longt"]]
     
     
     folium_static(map(user_input_dire,user_input_radio))
+
+    df_box = gc.cleaning_box(user_input_dire,user_input_radio)
+    df_box_dire = df_box.drop(["Latitud","Longitud"], axis=1)
+    st.dataframe(df_box_dire)
 
 
     st.write("""
