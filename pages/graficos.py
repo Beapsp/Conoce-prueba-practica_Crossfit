@@ -123,11 +123,18 @@ def app():
 
     else:
 
+
+        st.write("""
+        ## Participación de mujeres en países vecinos 
+        #""")
+        portada = Image.open("imagenes/image7.jpg")
+        st.image(portada, use_column_width=True)
+
         st.write("""
         ## Edades mínima, media, máxima 
         #""")
         fig6 = px.box(grafico2, x="division", y="age", color="gender", color_discrete_map={1: '#19D3F3', 0: 'red'}) 
-        fig6.update_layout(width=1000,height=500)
+        fig6.update_layout(width=900,height=500)
         st.plotly_chart(fig6),
 
 
@@ -135,7 +142,7 @@ def app():
         ## Mujeres que representan solas a su país
         #""")
         fig5 = px.bar(grafico3, x="competitors", y="countryoforiginname", color = "division")
-        fig5.update_layout(width=1000,height=500)
+        fig5.update_layout(width=900,height=500)
         st.plotly_chart(fig5),
         #fig = px.line(participacion_por_paises, y="polarity")
         #st.plotly_chart(fig)
@@ -144,7 +151,7 @@ def app():
         ## Pesos por rangos de edad en mujeres 
         #""")
         fig7 = fig = px.scatter(grafico5, x="age", y="weight", color="division_y")
-        fig7.update_layout(width=1000,height=500)
+        fig7.update_layout(width=900,height=500)
         st.plotly_chart(fig7),
 
         
